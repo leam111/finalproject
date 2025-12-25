@@ -90,14 +90,11 @@ function Admin() {
 
   return (
     <div className="App ">
-      
-
-
-
+  
       <h1 className="text-center">Admin Product Page</h1>
 
     <div className="container" style={{ maxWidth: "600px" }}>
-  <form>
+  <form onSubmit={handlesubmit}>
     <div className="mb-3 form-floating">
       <input
         type="text"
@@ -169,6 +166,9 @@ function Admin() {
       />
       <label htmlFor="image">Image(URL)</label>
     </div>
+<div className="text-center">
+<button type="submit" className="btn btn-primary text-center">Add Product</button>
+</div>
   </form>
 </div>
       <br></br>
