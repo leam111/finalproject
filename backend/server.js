@@ -23,33 +23,33 @@ db.connect((err) => {
   console.log("mysql connected");
 });
 
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+// app.post("/login", (req, res) => {
+//   const { username, password } = req.body;
 
-  if (!username || !password) {
-    return res.status(400).json({ message: "username and password required" });
-  }
-  const query = "SELECT * FROM users WHERE username = ? ";
+//   if (!username || !password) {
+//     return res.status(400).json({ message: "username and password required" });
+//   }
+//   const query = "SELECT * FROM users WHERE username = ? ";
 
-  db.query(query, [username, password], (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ message: "server error", error: err });
-    }
+//   db.query(query, [username, password], (err, results) => {
+//     if (err) {
+//       console.error(err);
+//       return res.status(500).json({ message: "server error", error: err });
+//     }
 
-    //check if the user exists
-    if (results.length === 0) {
-      return res.status(401).json({ message: "Invalid username or password" });
-    }
-    const user = results[0];
-    const passwordMatch = bcrypt.compareSync(password, user.password);
+//     //check if the user exists
+//     if (results.length === 0) {
+//       return res.status(401).json({ message: "Invalid username or password" });
+//     }
+//     const user = results[0];
+//     const passwordMatch = bcrypt.compareSync(password, user.password);
 
-    if (!passwordMatch) {
-      return res.status(401).json({ message: "Invalid username or password" });
-    }
-    res.json({ message: "login successful" });
-  });
-});
+//     if (!passwordMatch) {
+//       return res.status(401).json({ message: "Invalid username or password" });
+//     }
+//     res.json({ message: "login successful" });
+//   });
+// });
 
 app.get("/products", (req, res) => {
   const query = "SELECT * FROM products";
